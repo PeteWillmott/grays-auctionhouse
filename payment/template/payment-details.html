@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="{% static 'vendor/css/stripe.css' %}" type="text/css">
 {% endblock %}
 
-{% block page_title %}Gray and Sons{% endblock %}
+{% block page_title %}Gray and Sons - Payment{% endblock %}
 {% block page_heading %}Payment Details{% endblock %}
 {% block content %}
 
@@ -43,24 +43,24 @@
     </div>
 </div>
 
-<div class="border  border-primary  enclose">
+<div class="border  border-primary  enclose  mt-2">
     <div class="row">
-        <div class="class">
-                <p>{{ item.name | title }} {{ item.bid }}</p>
+        <div class="col  col-offset-1  ml-2">
+            <p class="pl-2">{{ item.name | title }} &#163;{{ item.bid }}</p>
         </div>
     </div>
 </div>
 
 <div class="border  border-primary  enclose  mt-2">
-  <form action="/charge" method="post" id="payment-form">
+  <form action="{% url 'payment:stripe' id=id %}" method="post" id="payment-form">
         <div>
+            {% csrf_token %}
             <label for="card-element" class="pt-2  ml-2">
             Credit or debit card
             </label>
             <div class="mx-2" id="card-element">
                 <!-- A Stripe Element will be inserted here. -->
             </div>
-
             <!-- Used to display form errors. -->
             <div id="card-errors" role="alert"></div>
         </div>
@@ -68,7 +68,7 @@
   </form>
 </div>
 
-<a href="#">Back</a>
+<a href="{% url 'payment:billing' id=id %}">Back</a>
 
 <script>
 // Create a Stripe client.

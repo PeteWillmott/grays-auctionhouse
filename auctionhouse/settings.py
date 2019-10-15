@@ -26,7 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'eezzy$461d(ogu=!n#)+yztu+c@qoyex-9gvw^$#&)1_%(*=h='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['ms4-auctionsite.herokuapp.com/']
 
@@ -126,6 +126,10 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Stripe API keys
+
+STRIPE_PUBLISHABLE = os.getenv("STRIPE_PUBLISHABLE")
+STRIPE_SECRET = os.getenv("STRIPE_SECRET")
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
