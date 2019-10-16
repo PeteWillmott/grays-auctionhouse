@@ -30,6 +30,7 @@ def view_one(request, pk):
         finish = Catalogue.objects.filter(finish__lte=datetime.now())
 
         if display in finish:
+            # Start payment process or go to auction over view.
             if display.last_bidder == request.user:
                 return redirect('payment:billing', id=pk)
             
@@ -40,6 +41,7 @@ def view_one(request, pk):
 
         elif display in open:
 
+            # Save bid and bidder's ID.
             if request.method == 'POST':
                 form = BidForm(request.POST)
                 if form.is_valid():
@@ -48,6 +50,7 @@ def view_one(request, pk):
                     display.save()
 
             else:
+                # display current bid
                 bid_val = display.bid
                 form = BidForm(initial={'bid': bid_val})
 
@@ -58,6 +61,7 @@ def view_one(request, pk):
             return render(request, 'display-one.html', context)
 
         else:
+            # Display details without bidding details, auction not started.
             context = {
                 "display": display,
             }
