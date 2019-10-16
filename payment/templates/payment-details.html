@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="{% static 'css/stripe.min.css' %}" type="text/css">
 {% endblock %}
 
-{% block page_title %}Gray and Sons{% endblock %}
+{% block page_title %}Gray and Sons Payment{% endblock %}
 {% block page_heading %}Payment Details{% endblock %}
 {% block content %}
 
@@ -43,10 +43,10 @@
     </div>
 </div>
 
-<div class="border  border-primary  enclose">
+<div class="border  border-primary  enclose  mt-2">
   <div class="row">
-      <div class="class">
-            <p>{{ item.name | title }} {{ item.bid }}</p>
+      <div class="col  col-offset-1">
+            <p class="ml-2">{{ item.name | title }} {{ item.bid }}</p>
       </div>
   </div>
 </div>
