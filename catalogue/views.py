@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import datetime
 from django.shortcuts import render, reverse, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
