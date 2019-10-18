@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load static from staticfiles %}
 
-{% block page_title %}Gray and Sons Payment{% endblock %}
+{% block page_title %}Gray and Sons{% endblock %}
 {% block page_heading %}Payment Successful{% endblock %}
 {% block content %}
 
-<p>Your payment has been authorised!</p>
-<p>Thank you for purchasing from us, we look forwards to seeing you at another of our auctions.</p>
+<p>Your payment of &#163;{{ item.bid }} has been made, {{ item.name }} will be dispatched to you as soon as possible. Thank you for your business we look forwards to seeing you at future auctions.</p>
 
 {% endblock %}

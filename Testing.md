@@ -89,10 +89,10 @@ The minimal non-vendor JavaScript has been proved by both use and testing of oth
 
 ## Chrome Audit Ratings
 
-Performance 61%
+Performance 60%
 
-Accessibility 93%
+Accessibility 91%
 
 Best Practices 86%
 
-SEO 89%
+SEO 88%

@@ -68,7 +68,7 @@ A relational database seemed well suited to the project and is required by the s
 
 Navigation was designed to be obvious and intuitive with consistency a must, only the toggle between login and logout according to the user's login status changes to ensure all links are in the expected place at all times.
 
-Balsamiq [wireframes](https://petes-gp-bucket.s3.eu-central-1.amazonaws.com/NewProject.bmpr)
+Balsamiq [wireframes](https://petes-gp-bucket.s3.eu-central-1.amazonaws.com/NewProject.bmpr) were drawn up, while they did inform the development process due to time pressure some changes were made.
 
 
 ### Features
@@ -109,7 +109,10 @@ The **Payment** app and it's pages are linked since this flows better. Since Gra
 #### A Note on Development Problems
 
 During the end phase of development I ran into considerable problems with my migrations and then consequently onwards deployment to the heroku postgres database. As time was extremely pressing and I was at the point where my tutor support had expired I was forced into a suboptimal solution, to make a fresh start rather than to go back through my commit history and unpick my errors and move on in the normal fashion.
+
 Accordingly the bare bones of the project were created anew in a separate environment feeding a separate repository and through the liberal application of copy paste I was able to rapidly recreate the project with fresh models without problem, complete the remain functional aspects of the site, advance to AWS S3 deployment and deployment to heroku.
+
+After I became aware of a major issue with the implementation of user registration the development work transferred to the `register-debug` branch, now merged back into `master`.
 
 The original repository with it's full development history is at https://github.com/PeteWillmott/milestone4
 
@@ -171,7 +174,7 @@ For the full test process see [Testing.md](Testing.md).
 
 ##### GitHub Repository - https://github.com/PeteWillmott/grays-auctionhouse
 
-To run locally you can either download direct from GitHub, using the green "Clone or download" button, or clone by entering `git clone https://github.com/PeteWillmott/recipebook`. To sever the link to my repository use the command `git remote rm origin`.
+To run locally you can either download direct from GitHub, using the green "Clone or download" button, or clone by entering `git clone https://github.com/PeteWillmott/grays-auctionhouse`. To sever the link to my repository use the command `git remote rm origin`.
 
 The exact details of how to proceed from this point will depend on your IDE.
 
@@ -184,12 +187,12 @@ The exact details of how to proceed from this point will depend on your IDE.
    - Cd into your project folder and create your environment `python3 -m venv env`for macOS/Linux `python -m venv env`for windows. 
    - Open the folder in your IDE `code .` for me but varies by IDE.
    - Activate the virtual environment. (For me this meant select a Python interpreter `Strg+Shift+P`then create a new integrated terminal `Ctrl+Shift+ö`.)  However that functions for your OS and IDE you would normally see `(env)` displayed in the terminal by the command prompt.
-   -  Install Django `python -m pip install django`.
+   - Install Django `python -m pip install django`.
    - You now have a virtual environment to deploy the project into.
 
    
 
-4. When your environment is ready run `pip -r requirements.txt`.
+4. When your environment is ready run `pip install -r requirements.txt`.
 
 5. Launch Django by running the command `python manage.py runserver`, the Django server should now be running as your local host,  **http://127.0.0.1:8000** .
 
@@ -238,7 +241,7 @@ To host your static files on AWS S3 create and account if you don't already have
      `]`
    `}`
 
-2. In AWS IAM create a group and a user for that group with programatic permissions and an S3 permissions policy.
+2. In AWS IAM create a group and a user for that group with programmatic permissions and an S3 permissions policy.
 
 3. In your terminal run `collectstatic`and your static files should be deployed to AWS S3.
 
@@ -276,7 +279,7 @@ To deploy to [Heroku]( https://www.heroku.com/), create an account if you don't 
 
 #### Content
 
-I was fortunate enough to receive advice from several quarters, my mentor, the tutors, my friends and fellow students. My work was further informed by other sources, the course work, Stackoverflow and several online tutorials. However the code is my own, with one notable exception, the accounts app with its register, login and logout views and associated code come more or less verbatim from one of the 'follow along' sections of the course so the credit for that app belongs more to the Code Institute and their staff than to me. 
+I was fortunate enough to receive advice from several quarters, my mentor, the tutors, my friends and fellow students. My work was further informed by other sources, the course work, Stackoverflow and several online tutorials. However the code is my own, with two notable exceptions. The accounts app with its register, login and logout views and associated code come more or less verbatim from one of the 'follow along' sections of the course so the credit for that app belongs more to the Code Institute and their staff than to me. The Stripe code that handles payment is either directly installed or copied from the Stripe homepage of is from their documentation either as is or slightly modified, eg Flask syntax changed to work with Django, so I can claim no credit for that aspect of the site.
 
 The privacy policy was also found with google and again no credit reflects on me from the content.
 

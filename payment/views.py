@@ -1,7 +1,11 @@
+import os
+import stripe
+
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
+
 from .forms import Billing_Address_Form, Delivery_Address_Form,  Recipient_Form
 from .models import Delivery_Address, Billing_Address
 from catalogue.models import Catalogue
@@ -70,22 +74,22 @@ def payment(request, id):
 
 
 @login_required(login_url='/login/')
-def stripe(request, id):
+def charge(request, id):
     item = Catalogue.objects.get(id=id)
+    stripe.api_key = os.getenv("STRIPE_SECRET")
     if request.method == 'POST':
-        token = request.POST.get['stripeToken']
-        try:
-            charge = stripe.Charge.create(
-                amount=item.bid,
+        token = request.POST.get('stripeToken')
+        charge = stripe.Charge.create(
+                amount=int(item.bid) * 100,
                 currency='gbp',
                 description=item.name,
                 source=token,
             )
 
-        except:
+        if charge.paid:
+            return render(request, "success.html", {"item": item})
+            
+        else:
             messages.error(request, f"Your card was declined!")
-
-    if charge.paid:
-        return render(request, "success.html")
 
     return redirect('payment:payment', id=id)
